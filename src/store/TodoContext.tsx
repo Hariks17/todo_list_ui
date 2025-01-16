@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axiosInstance from "../service/axiosInstance";
 
 interface Todo {
-  id: string;
+  id?: string;
   title: string;
   completed: boolean;
   due_date: string;
