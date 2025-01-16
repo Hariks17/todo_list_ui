@@ -1,94 +1,127 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #ccc9e7;
+  background-color: #eceff4; /* Light background for better contrast */
+  color: #2c3e50; /* Darker primary text color */
 }
+
 button {
   border: none;
   border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px; /* Slightly larger default button text */
 }
+
 main {
   max-width: 800px;
   text-align: center;
   margin: 0 auto;
-  padding-top: 40px;
+  padding: 20px 10px;
 }
+
 .header__section {
-  font-size: 25px;
+  font-size: 28px; /* Larger header size for prominence */
+  margin-bottom: 20px;
 }
+
 .header__h1 {
-  color: #6c6f7d;
+  color: #34495e; /* Improved contrast */
 }
+
 .action__section {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
 }
+
 .action__section button {
-  background-color: #2e3138;
-  color: rgb(171, 171, 171);
-  cursor: pointer;
-  padding: 10px 15px;
+  background-color: #2c3e50; /* Darker button background */
+  color: #ffffff; /* White text for contrast */
+  padding: 12px 18px; /* More padding for larger buttons */
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.action__section button:hover {
+  background-color: #1a252f; /* Slightly darker hover state */
+  transform: scale(1.05);
+}
+
 .action__section select {
-  border: none;
+  border: 2px solid #b6b9c8;
   border-radius: 6px;
-  background-color: #b6b9c8;
-  padding: 10px 30px 10px 10px; /* Adjust padding for text and arrow spacing */
-  text-align: left; /* Align text */
+  background-color: #ffffff;
+  padding: 12px 30px 12px 12px;
+  font-size: 16px; /* Larger text for readability */
+  color: #34495e;
   text-align-last: left;
-}
-.action__section select:focus {
   outline: none;
+  transition: border-color 0.3s ease;
 }
-/* Todo Section */
+
+.action__section select:focus {
+  border-color: #2c3e50;
+}
+
 .todolist__section {
-  background-color: #6c6f7d;
+  background-color: #34495e; /* Darker background for task list */
   height: 70vh;
   border-radius: 6px;
   padding: 10px;
   overflow-y: auto; /* Enable scroll for overflow content */
+  color: #ffffff; /* White text on dark background */
+}
+
+.list__container {
+  list-style: none;
 }
 
 .list__element {
-  background-color: #b6b9c8;
+  background-color: #ffffff;
   border-radius: 6px;
-  height: auto; /* Allow content to dictate height */
+  padding: 12px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 10px; /* Add spacing between list items */
+  align-items: center;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: #2c3e50; /* Darker text for contrast */
 }
+
 .list__element:hover {
-  background-color: #d6d8df; /* Lighter shade for hover */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .list__info {
   display: flex;
-  align-items: center; /* Align checkbox and text vertically */
+  align-items: center;
   gap: 10px;
 }
 
 input[type="checkbox"] {
-  appearance: none; /* Remove default styles */
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid #2e3138;
+  appearance: none;
+  width: 1.8rem;
+  height: 1.8rem; /* Larger checkbox for easier interaction */
+  border: 2px solid #2c3e50;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #ffffff;
   cursor: pointer;
   position: relative;
+  transition: all 0.3s ease;
 }
 
 input[type="checkbox"]:checked {
-  background-color: #2e3138;
-  border-color: #2e3138;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
 }
 
 input[type="checkbox"]:checked::before {
@@ -102,43 +135,63 @@ input[type="checkbox"]:checked::before {
 
 .list__info span p {
   margin: 0;
-  font-size: 14px; /* Adjust text size */
-  color: #2e3138;
+  font-size: 16px; /* Larger text for better readability */
+  color: #2c3e50;
 }
 
 .list__action {
   display: flex;
-  gap: 5px; /* Add space between buttons */
+  gap: 10px;
 }
 
 .list__action button {
-  background-color: #2e3138;
-  color: rgb(171, 171, 171);
-  padding: 8px;
-  border: none;
+  background-color: #2c3e50;
+  color: #ffffff;
+  padding: 10px;
   border-radius: 4px;
-  font-size: 20px;
-  cursor: pointer;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .list__action button:hover {
-  background-color: #17191e;
-  font-size: 22px;
-  /* Darker shade on hover */
+  background-color: #1a252f;
+  transform: scale(1.1);
 }
-@media (max-width: 600px) {
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  main {
+    padding: 10px;
+  }
+
   .action__section {
     flex-direction: column;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 15px;
   }
+
   .list__element {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
+
   .list__action {
     align-self: flex-end;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__section {
+    font-size: 24px; /* Slightly smaller header for small screens */
+  }
+
+  .action__section button,
+  .action__section select {
+    width: 100%; /* Full-width for better usability */
   }
 }

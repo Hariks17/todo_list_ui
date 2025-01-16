@@ -1,11 +1,31 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axiosInstance from "../service/axiosInstance";
 
-const TodoContext = createContext();
+interface Todo {
+  id: string;
+  title: string;
+  completed: boolean;
+  due_date: string;
+}
 
-export const TodoProvider = ({ children }) => {
-  const [todos, setTodos] = useState([]);
-  const [filter, setFilter] = useState("All");
+interface TodoContextType {
+  todos: Todo[];
+  filteredTodos: Todo[];
+  addTodo: (todo: Todo) => Promise<void>;
+  deleteTodo: (id: string) => Promise<void>;
+  updateTodo: (todo: Todo) => Promise<void>;
+  setFilter: (filter: string) => void;
+  filter: string;
+}
+
+const TodoContext = createContext<TodoContextType | undefined>(undefined);
+
+export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
+  const [filter, setFilter] = useState<string>("All");
 
   const fetchTodos = async () => {
     try {
@@ -16,50 +36,56 @@ export const TodoProvider = ({ children }) => {
     }
   };
 
-  const addTodo = async (todo: any) => {
+  const addTodo = async (todo: Todo) => {
     try {
       await axiosInstance.post("/api/addTodo", todo);
       fetchTodos();
     } catch (error) {
-      console.error("Error Adding Todos:", error);
+      console.error("Error adding todo:", error);
     }
   };
 
-  const deleteTodo = async (id: any) => {
+  const deleteTodo = async (id: string) => {
     try {
       await axiosInstance.delete(`/api/deleteTodo/${id}`);
       fetchTodos();
     } catch (error) {
-      console.error("Error Adding Todos:", error);
+      console.error("Error deleting todo:", error);
     }
   };
 
-  const updateTodo = async (todo: any) => {
+  const updateTodo = async (todo: Todo) => {
     try {
-      await axiosInstance.put(`/api/updateTodo`, todo[0]);
+      await axiosInstance.put(`/api/updateTodo`, todo);
       fetchTodos();
     } catch (error) {
-      console.error("Error Adding Todos:", error);
+      console.error("Error updating todo:", error);
     }
   };
 
-  const filteredTodos = () => {
-    if (filter == "Pending") {
-      todos.filter((t) => !t.completed);
-    } else if (filter == "Completed") {
-      todos.filter((t) => t.completed);
+  const filterTodos = () => {
+    let filtered: Todo[] = todos;
+    if (filter === "Pending") {
+      filtered = todos.filter((t) => !t.completed);
+    } else if (filter === "Completed") {
+      filtered = todos.filter((t) => t.completed);
     }
-    return todos;
+    setFilteredTodos(filtered);
   };
 
   useEffect(() => {
     fetchTodos();
   }, []);
 
+  useEffect(() => {
+    filterTodos();
+  }, [filter, todos]);
+
   return (
     <TodoContext.Provider
       value={{
-        todos: filteredTodos(),
+        todos,
+        filteredTodos,
         addTodo,
         deleteTodo,
         updateTodo,
@@ -73,5 +99,9 @@ export const TodoProvider = ({ children }) => {
 };
 
 export const useTodoContext = () => {
-  return useContext(TodoContext);
+  const context = useContext(TodoContext);
+  if (!context) {
+    throw new Error("useTodoContext must be used within a TodoProvider");
+  }
+  return context;
 };
