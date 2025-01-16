@@ -1,0 +1,29 @@
+.action__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.action__button {
+  background-color: #03dac6;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  color: #000;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action__button:hover {
+  background-color: #02c3b6;
+}
+
+.action__select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

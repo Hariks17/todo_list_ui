@@ -1,0 +1,13 @@
+.header__section {
+  text-align: center;
+  background-color: #6200ee;
+  padding: 1rem;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.header__h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}

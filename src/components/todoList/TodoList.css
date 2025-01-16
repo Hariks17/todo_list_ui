@@ -1,0 +1,14 @@
+.todolist__section {
+  margin-top: 1rem;
+}
+
+.list__container {
+  list-style-type: none;
+  padding: 0;
+}
+
+.empty__message {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+}
